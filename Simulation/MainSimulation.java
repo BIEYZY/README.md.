@@ -1,0 +1,37 @@
+package simulation;
+
+/*
+ * MainSimulation initializes and runs
+ * the distributed system simulation.
+ */
+public class MainSimulation {
+
+    public static void main(String[] args) {
+
+        // Choose ONE naming strategy
+        //NamingServer naming = new FlatNamingServer();
+        // NamingServer naming = new StructuredNamingServer();
+         NamingServer naming = new AttributeNamingServer();
+
+        // Shared replica
+        Replica replica = new Replica();
+
+        // Choose ONE consistency model:
+        //ConsistencyModel consistency =
+               // new sequentialConsistency(replica);
+               
+         ConsistencyModel consistency =
+               new EventualConsistency(replica);
+         
+         //ConsistencyModel consistency =
+        //new ClientCentricConsistency(replica)
+
+        // Create client processes
+        Client c1 = new Client("Client-1", naming, consistency);
+        Client c2 = new Client("Client-2", naming, consistency);
+
+        // Start clients
+        c1.start();
+        c2.start();
+    }
+}
