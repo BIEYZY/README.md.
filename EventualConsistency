@@ -1,0 +1,33 @@
+package simulation;
+
+/*
+ * EventualConsistency simulates asynchronous
+ * replication with delayed updates.
+ */
+public class EventualConsistency implements ConsistencyModel {
+
+    private Replica replica;
+
+    public EventualConsistency(Replica replica) {
+        this.replica = replica;
+    }
+
+    /*
+     * Write is applied after a delay,
+     * allowing temporary inconsistency.
+     */
+    @Override
+    public void write(int value) {
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(2000); // propagation delay
+            } catch (InterruptedException e) {
+            }
+
+            replica.write(value);
+            System.out.println("[" + TimeUtil.now() +
+                    "] Eventual consistency applied");
+        }).start();
+    }
+}
