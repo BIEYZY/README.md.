@@ -1,0 +1,25 @@
+package simulation;
+
+/*
+ * SequentialConsistency enforces a single
+ * global order of write operations.
+ */
+public class sequentialConsistency implements ConsistencyModel {
+
+    private Replica replica;
+
+    public sequentialConsistency(Replica replica) {
+        this.replica = replica;
+    }
+
+    /*
+     * Synchronized ensures that all clients
+     * observe writes in the same order.
+     */
+    @Override
+    public synchronized void write(int value) {
+        replica.write(value);
+        System.out.println("[" + TimeUtil.now() +
+                "] Sequential consistency applied");
+    }
+}
