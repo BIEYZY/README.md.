@@ -1,0 +1,14 @@
+package simulation;
+
+/*
+ * NamingServer defines the interface for
+ * resource name resolution.
+ *
+ * Different implementations simulate
+ * flat, structured, and attribute-based naming.
+ */
+public interface NamingServer {
+
+    // Resolve a resource name to a replica
+    String resolve(String name);
+}
