@@ -1,0 +1,36 @@
+package simulation;
+
+import java.util.HashMap;
+
+/*
+ * FlatNamingServer simulates flat naming.
+ * All resource names exist in a single namespace.
+ */
+public class FlatNamingServer implements NamingServer {
+
+    // Lookup table for name resolution
+    private HashMap<String, String> table = new HashMap<>();
+
+    public FlatNamingServer() {
+        // One simple mapping
+        table.put("file1", "Replica-1");
+    }
+
+    /*
+     * Resolves a name using a flat lookup.
+     * Small delay simulates lookup cost.
+     */
+    @Override
+    public String resolve(String name) {
+        simulateDelay(200); // fast lookup
+        return table.get(name);
+    }
+
+    // Simulate network or processing delay
+    private void simulateDelay(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+        }
+    }
+}
