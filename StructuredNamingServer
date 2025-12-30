@@ -1,0 +1,21 @@
+package simulation;
+
+/*
+ * StructuredNamingServer simulates hierarchical naming
+ * similar to DNS.
+ */
+public class StructuredNamingServer implements NamingServer {
+
+    @Override
+    public String resolve(String name) {
+        simulateDelay(400); // more overhead
+        return "Replica-1";
+    }
+
+    private void simulateDelay(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+        }
+    }
+}
