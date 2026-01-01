@@ -2,7 +2,7 @@ README
 Design and Evaluation of a Scalable Distributed System with Process Management, Naming, and Data Consistency Mechanisms
 
 Step 1: Download and Extract the Code
-1. Download the ZIP file that contains all simulation files
+1. #Download the ZIP file that contains all simulation files
 2. Extract the ZIP file to a desired folder on your computer
 3. Navigate to the extracted folder where you see all .java files
 4. The standalone files are dedicated to specific tasks, each containing its own detailed implementations.
